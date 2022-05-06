@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+
+
+  wallets:
+    build: ./wallets
+    command: ["flask",  "run", "--host=0.0.0.0"]
+    volumes:
+      - ./wallets:/wallets
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=wallets
+
+  register:
+    build: ./register
+    command: ["flask",  "run", "--host=0.0.0.0"]
+    volumes:
+      - ./register:/register
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=register
+
+  open_closer:
+    build: ./open_closer
+    command: ["flask",  "run", "--host=0.0.0.0"]
+    volumes:
+      - ./open_closer:/open_closer
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=open_closer
+
+  blockchain:
+    build: ./blockchain
+    command: ["flask",  "run", "--host=0.0.0.0"]
+    volumes:
+      - ./blockchain:/blockchain
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=blockchain
+
+  coordinator:
+    build: ./coordinator
+    command: ["flask",  "run", "--host=0.0.0.0"]
+    volumes:
+      - ./coordinator:/coordinator
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=coordinator
+    ports:
+      - '5003:5000'
